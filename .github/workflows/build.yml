@@ -1,4 +1,4 @@
-name: Build Plugin
+name: Build
 on:
   push:
     branches:
@@ -21,3 +21,9 @@ jobs:
           cache: 'maven'
       - name: Build
         run: mvn -B verify
+      - name: Upload plugin JAR
+        uses: actions/upload-artifact@v6
+        with:
+          name: CoreProtect
+          path: target/CoreProtect-*.jar
+          if-no-files-found: error
